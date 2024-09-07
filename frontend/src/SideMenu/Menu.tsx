@@ -1,19 +1,26 @@
-import "./Header.scss"
+import "./Menu.scss"
 import "../App.scss"
 import { useNavigate } from "react-router-dom"
 
-const Header: React.FC = () => {
-  const logo = require("../images/Whale3logo.png")
+interface MenuProps {
+  isVisible: boolean
+}
 
+const Menu: React.FC<MenuProps> = ({ isVisible }) => {
   const navigate = useNavigate()
-
   const handleClick = () => {
     navigate("/login")
   }
 
+  const logo = require("../images/Whale3logo.png")
+  const divClass = "container-fluid d-flex justify-content-between align-items-center"
+
+  const isMobile = true
+
   return (
-    <nav className="navbar navbar-expand-lg fixed-top custom-navbar">
-      <div className="container-fluid d-flex justify-content-between align-items-center">
+    // <div className={isVisible? "menuPadShow" : "menuPadHidden"} id="menuPad">
+    <nav className={isMobile ? "" : "navbar navbar-expand-lg fixed-top custom-navbar"}>
+      <div className={isMobile ? (isVisible ? "menuPadShow" : "menuPadHidden") : divClass}>
         <a className="navbar-brand" href="/">
           <img src={logo} alt="Whale Whale Whale logo" width="200" />
         </a>
@@ -36,7 +43,8 @@ const Header: React.FC = () => {
         </button>
       </div>
     </nav>
+    // </div>
   )
 }
 
-export default Header
+export default Menu
