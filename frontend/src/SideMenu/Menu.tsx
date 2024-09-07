@@ -1,9 +1,15 @@
 import "./Menu.scss"
 import "../App.scss"
 import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 interface MenuProps {
   isVisible: boolean
+}
+
+function getWindowSize() {
+  const { innerWidth, innerHeight } = window
+  return { innerWidth, innerHeight }
 }
 
 const Menu: React.FC<MenuProps> = ({ isVisible }) => {
@@ -15,10 +21,23 @@ const Menu: React.FC<MenuProps> = ({ isVisible }) => {
   const logo = require("../images/Whale3logo.png")
   const divClass = "container-fluid d-flex justify-content-between align-items-center"
 
-  const isMobile = true
+  const [windowSize, setWindowSize] = useState(getWindowSize())
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize())
+    }
+
+    window.addEventListener("resize", handleWindowResize)
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize)
+    }
+  }, [])
+
+  const isMobile = windowSize.innerWidth < 768 ? true : false
 
   return (
-    // <div className={isVisible? "menuPadShow" : "menuPadHidden"} id="menuPad">
     <nav className={isMobile ? "" : "navbar navbar-expand-lg fixed-top custom-navbar"}>
       <div className={isMobile ? (isVisible ? "menuPadShow" : "menuPadHidden") : divClass}>
         <a className="navbar-brand" href="/">
