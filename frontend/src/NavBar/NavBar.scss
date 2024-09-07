@@ -36,11 +36,11 @@
   outline: none;
 }
 
-.menuPadHidden {
+.side-menu-hidden {
   display: none;
 }
 
-.menuPadShow {
+.side-menu-shown {
   z-index: 100;
   position: absolute;
   display: flex;
@@ -51,7 +51,7 @@
   right: 0;
   width: 50%;
   height: 100%;
-  background: $whale-main-blue;
+  background: $whale-light-blue;
   opacity: 90%;
   gap: 30px;
 }

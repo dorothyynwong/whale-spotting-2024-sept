@@ -1,9 +1,9 @@
-import "./Menu.scss"
+import "./NavBar.scss"
 import "../App.scss"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 
-interface MenuProps {
+interface NavBarProps {
   isVisible: boolean
 }
 
@@ -12,16 +12,16 @@ function getWindowSize() {
   return { innerWidth, innerHeight }
 }
 
-const Menu: React.FC<MenuProps> = ({ isVisible }) => {
+const NavBar: React.FC<NavBarProps> = ({ isVisible }) => {
   const navigate = useNavigate()
   const handleClick = () => {
     navigate("/login")
   }
 
   const logo = require("../images/Whale3logo.png")
-  const divClass = "container-fluid d-flex justify-content-between align-items-center"
 
   const [windowSize, setWindowSize] = useState(getWindowSize())
+  const isMobile = windowSize.innerWidth < 768 ? true : false
 
   useEffect(() => {
     function handleWindowResize() {
@@ -35,11 +35,17 @@ const Menu: React.FC<MenuProps> = ({ isVisible }) => {
     }
   }, [])
 
-  const isMobile = windowSize.innerWidth < 768 ? true : false
-
   return (
     <nav className={isMobile ? "" : "navbar navbar-expand-lg fixed-top custom-navbar"}>
-      <div className={isMobile ? (isVisible ? "menuPadShow" : "menuPadHidden") : divClass}>
+      <div
+        className={
+          isMobile
+            ? isVisible
+              ? "side-menu-shown"
+              : "side-menu-hidden"
+            : "container-fluid d-flex justify-content-between align-items-center"
+        }
+      >
         <a className="navbar-brand" href="/">
           <img src={logo} alt="Whale Whale Whale logo" width="200" />
         </a>
@@ -62,8 +68,7 @@ const Menu: React.FC<MenuProps> = ({ isVisible }) => {
         </button>
       </div>
     </nav>
-    // </div>
   )
 }
 
-export default Menu
+export default NavBar

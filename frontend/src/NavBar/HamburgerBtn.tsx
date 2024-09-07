@@ -1,5 +1,5 @@
 import React from "react"
-import "./Menu.scss"
+import "./NavBar.scss"
 
 interface HamburgerBtnProps {
   onClick: () => void
@@ -8,7 +8,7 @@ interface HamburgerBtnProps {
 const HamburgerBtn: React.FC<HamburgerBtnProps> = ({ onClick }) => {
   return (
     <>
-      <button id="menuButton" className="hamburger" onClick={onClick}>
+      <button className="hamburger" onClick={onClick}>
         <span className="line"></span>
         <span className="line"></span>
         <span className="line"></span>

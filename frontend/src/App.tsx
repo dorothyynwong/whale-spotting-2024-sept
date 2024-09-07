@@ -4,9 +4,8 @@ import Explore from "./pages/Explore"
 import Home from "./pages/Home"
 import "./App.scss"
 import { CreateUser } from "./pages/CreateUser"
-// import Header from "./Header/Header"
-import HamburgerBtn from "./SideMenu/HamburgerBtn"
-import Menu from "./SideMenu/Menu"
+import HamburgerBtn from "./NavBar/HamburgerBtn"
+import NavBar from "./NavBar/NavBar"
 
 function App() {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
@@ -18,9 +17,8 @@ function App() {
     <BrowserRouter>
       <HamburgerBtn onClick={toggleMenu} />
       <div>
-        <Menu isVisible={isMenuVisible} />
+        <NavBar isVisible={isMenuVisible} />
       </div>
-      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
