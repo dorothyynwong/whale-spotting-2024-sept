@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using WhaleSpotting.Models.Request;
 using WhaleSpotting.Models.Response;
@@ -21,6 +22,15 @@ public class SightingsController : Controller
     {
         try
         {
+            sightingRequest.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        }
+
+        try
+        {
             await _service.CreateSighting(sightingRequest);
             return Ok();
         }
@@ -29,5 +39,4 @@ public class SightingsController : Controller
             return BadRequest(ex.Message);
         }
     }
-
 }
