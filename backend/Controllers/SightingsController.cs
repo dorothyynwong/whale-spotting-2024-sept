@@ -23,6 +23,7 @@ public class SightingsController : Controller
         try
         {
             sightingRequest.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            sightingRequest.Description = User.FindFirst(ClaimTypes.Role).Value;
         }
         catch (Exception ex)
         {
