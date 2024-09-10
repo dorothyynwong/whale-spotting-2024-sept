@@ -20,15 +20,15 @@ public class SightingsController : Controller
     [HttpPost("create")]
     public async Task<IActionResult> Create(SightingsRequest sightingRequest)
     {
-        try
-        {
-            sightingRequest.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            sightingRequest.Description = User.FindFirst(ClaimTypes.Role).Value;
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-        }
+        // try
+        // {
+        //     sightingRequest.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        //     sightingRequest.Description = User.FindFirst(ClaimTypes.Role).Value;
+        // }
+        // catch (Exception ex)
+        // {
+        //     return BadRequest(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        // }
 
         try
         {
